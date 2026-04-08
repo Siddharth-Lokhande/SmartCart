@@ -1,4 +1,4 @@
-# 🌐 Project Name: [SmartCart]
+# 🌐 SmartCart - Ecommerce Platform
 
 A full-stack web application built using the **Spring Ecosystem**, featuring server-side rendering with **Thymeleaf** and a robust **MySQL** database.
 
@@ -45,6 +45,12 @@ A full-stack web application built using the **Spring Ecosystem**, featuring ser
 
 ## ⚙️ Configuration & Setup
 
+### 1. Clone the Repository
+Open your terminal or Git Bash and run the following commands:
+```bash
+git clone [https://github.com/Siddharth-Lokhande/SmartCart.git](https://github.com/Siddharth-Lokhande/SmartCart.git)
+cd SmartCart
+```
 ### 1. Database Setup
 Create a MySQL database and update your `src/main/resources/application.properties`:
 
@@ -56,3 +62,4 @@ spring.datasource.password=your_db_password
 # Hibernate Settings
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
+```
