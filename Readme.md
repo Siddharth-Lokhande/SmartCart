@@ -13,14 +13,21 @@ A full-stack web application built using the **Spring Ecosystem**, featuring ser
 
 ## 📸 Screenshots
 
+### 📝 Login-Authentication
+> *Brief description of what the user sees here.*
+> ![Dashboard](screenshots/signup.png)
+> 
 ### 🖥️ Dashboard
 > *Brief description of what the user sees here.*
 > ![Dashboard](screenshots/dashboard.png)
 
-### 📝 Dashboard-2
+### 🖥️ Dashboard-2
 > *Showcasing Spring MVC form binding and validation.*
-> ![Create Form](screenshots/form.png)
+> ![Create Form](screenshots/sash.png)
 
+### 🖥️ Order
+> *Showcasing Spring MVC form binding and validation.*
+> ![Create Form](screenshots/order.png)
 ---
 
 ## 🛠️ Tech Stack
