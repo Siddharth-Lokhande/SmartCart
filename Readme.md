@@ -17,13 +17,9 @@ A full-stack web application built using the **Spring Ecosystem**, featuring ser
 > *Brief description of what the user sees here.*
 > ![Dashboard](screenshots/dashboard.png)
 
-### 📝 Entry Form
+### 📝 Dashboard-2
 > *Showcasing Spring MVC form binding and validation.*
 > ![Create Form](screenshots/form.png)
-
-### 📊 Data Table
-> *List view showing records fetched from MySQL.*
-> ![Data List](screenshots/list.png)
 
 ---
 
