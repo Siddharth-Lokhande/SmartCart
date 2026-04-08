@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SignUp</title>
+</head>
+<body>
+    <h2>Create Your Account</h2>   
+    <form th:action="@{/register}" method="post">   
+        <div class="form-group" >
+  <label><input type="radio"  name="isseller" value="false" > Customer</label>
+  <label><input type="radio"  name="isseller" value="true"> Seller</label>
+        </div>
+        <div class="form-group">
+   <label><input type="text" name="uname" required>UserName</label>
+        </div>
+        <div class="form-group">
+   <label><input type="password" name="pwd" required>Password</label>
+        </div>
+        <button type="submit">SignUp</button> 
+    </form>
+    <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
+    <div th:replace="~{footer :: Footer}"></div>
+</body>
+</html>

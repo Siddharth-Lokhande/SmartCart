@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="Header">
+        <header style="background: #333; color: white; padding: 10px;">
+            <h1>SmartCart</h1>
+            <nav>
+    <ul>
+        <li th:if="${User.isseller}">
+            <a href="/salesboard">SalesBoard</a>
+        </li>
+        <li th:unless="${User.isseller}">
+            <a href="/dashboard">Dashboard</a>
+        </li>
+
+        <th:block th:if="${!User.isseller}">
+            <li><a href="/cart">Cart</a></li>
+            <li><a href="/orders">Orders</a></li>
+        </th:block>
+
+        <li><a href="/profile">Profile</a></li>
+
+        <li class="logout-item">
+            <form action="/logout" method="post" style="display:inline;">
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        </li>
+    </ul>
+</nav>           
+        </header>
+    </div>
+</body>
+</html>

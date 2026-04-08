@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DashBoard</title>
+</head>
+<body>
+    <h2>Welcome <span th:text="${User.name}">Name</span></h2>
+    <div th:replace="~{header :: Header}"></div>
+    <h2>Your Profile</h2>   
+    <form th:action="@{/profile}" method="post">   
+    <div th:object="${User}">
+<h2>Name: <span th:text="${User.name}">Name</span></h2>
+<p>Age: <span th:text="${User.age}">age</span></p>
+<p>Address: <span th:text="${User.address}">adres</span></p>
+<p>Ph.no: <span th:text="${User.phone}">ph</span></p>
+<p>Email: <span th:text="${User.email}">mail</span></p>
+        </div>
+     </form>
+     
+     <div th:replace="~{footer :: Footer}"></div>
+</body>
+</html>

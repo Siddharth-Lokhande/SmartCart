@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart</title>
+    <style>
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .cart-header h2 {
+            margin: 0;
+        }
+        .cart-header .place-order-btn {
+            padding: 10px 30px;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .cart-header .place-order-btn:hover {
+            background: #218838;
+        }
+        .cart-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
+            font-size: 18px;
+        }
+        .cart-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            list-style: none;
+            margin: 0;
+        }
+        .cart-list li {
+            flex: 0 1 220px;
+        }
+        .cart-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 12px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .cart-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .cart-card h4 { margin: 10px 0 4px; }
+        .cart-card .price { color: #e63946; font-weight: bold; font-size: 18px; margin: 4px 0; }
+        .cart-card .desc { font-size: 13px; color: #555; margin: 4px 0 10px; flex-grow: 1; }
+        .cart-card label { font-size: 13px; color: #333; margin-bottom: 4px; }
+        .cart-card input[type="number"] {
+            width: 60px;
+            padding: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        .cart-card .delete-btn {
+            width: 100%;
+            padding: 8px;
+            background: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .cart-card .delete-btn:hover { background: #c82333; }
+    </style>
+</head>
+<body>
+    <div th:replace="~{header :: Header}"></div>
+
+    <form th:unless="${#lists.isEmpty(Product)}" th:action="@{/placeorder}" method="post">
+        
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button type="submit" class="place-order-btn">Place Order</button>
+        </div>
+
+        <ul class="cart-list">
+            <li th:each="item : ${Product}">
+                <div class="cart-card">
+                    <img th:src="${item.imageUrl}" alt="product image">
+                    <h4 th:text="${item.pname}">Product Name</h4>
+                    <p class="price">₹<span th:text="${item.price}">999</span></p>
+                    <p class="desc" th:text="${item.pdesc}">Short description</p>
+                    
+                    <label>Qty: 
+                        <input type="number" name="quantities" value="1" min="1">
+                    </label>
+                    <input type="hidden" name="productIds" th:value="${item.id}">
+
+                    <button type="submit" th:formaction="@{/removefromcart(id=${item.id})}" class="delete-btn">
+                        Delete
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </form>
+
+    <div th:if="${#lists.isEmpty(Product)}" class="cart-empty">
+        <p>Your cart is empty.</p>
+    </div>
+
+    <div th:replace="~{footer :: Footer}"></div>
+</body>
+</html>

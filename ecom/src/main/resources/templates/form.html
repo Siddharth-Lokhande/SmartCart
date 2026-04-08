@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+</head>
+<body>
+   <h2>Fill up the form</h2>   
+    <form th:action="@{/form}" method="post"> 
+ <div class="form-group">
+ <label><input type="text" name="name" required>Name</label>
+ <label><input type="email" name="email" required>Email</label> 
+ </div>
+ <div class="form-group">
+ <label><input type="text" name="address" required>Address</label> 
+ <label><input type="number" name="pincode" required>PinCode</label> 
+ </div>
+ <div class="form-group">
+ <label><input type="number" name="age" required>Age</label>
+ <label><input type="number" name="phone" required>Phone.no</label>  
+ </div>
+ <div class="form-group">
+  <label><input type="radio" name="ismale" value="true" checked>Male</label>
+  <label><input type="radio" name="ismale" value="false">Female</label>
+ </div>
+ <button type="submit">Submit</button>  
+    </form>
+    <div th:replace="~{footer :: Footer}"></div>
+  </body>
+  </html>

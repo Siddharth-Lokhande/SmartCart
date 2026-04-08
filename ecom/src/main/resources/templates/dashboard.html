@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DashBoard</title>
+    <style>
+        .catalogue {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            list-style: none;
+            margin: 0;
+        }
+        .catalogue li {
+            flex: 0 1 220px;
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 12px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        }
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .product-card h4 {
+            margin: 10px 0 4px;
+            font-size: 16px;
+        }
+        .product-card .price {
+            color: #e63946;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 4px 0;
+        }
+        .product-card .desc {
+            font-size: 13px;
+            color: #555;
+            margin: 4px 0 10px;
+            flex-grow: 1;
+        }
+        .product-card .category-tag {
+            display: inline-block;
+            background: #eef;
+            color: #336;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+        .product-card input[type="number"] {
+            width: 60px;
+            padding: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        .product-card button {
+            width: 100%;
+            padding: 8px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .product-card button:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <h2>Welcome <span th:text="${User.name}">Name</span></h2>
+    <div th:replace="~{header :: Header}"></div>
+    <ul class="catalogue">
+        <li th:each="item : ${Product}">
+            <form th:action="@{/addtocart}" method="post">
+                <div class="product-card">
+                    <img th:src="${item.imageUrl}" alt="product image">
+                    <span class="category-tag" th:text="${item.category}">Category</span>
+                    <h4 th:text="${item.pname}">Product Name</h4>
+                    <p class="price">₹<span th:text="${item.price}">999</span></p>
+                    <p class="desc" th:text="${item.pdesc}">Short description</p>
+                    <div>
+                
+                        <input type="hidden" name="id" th:value="${item.id}">
+                    </div>
+                    <button type="submit" >Add to Cart</button>
+                </div>
+            </form>
+        </li>
+    </ul>
+    <div th:replace="~{footer :: Footer}"></div>
+</body>
+</html>

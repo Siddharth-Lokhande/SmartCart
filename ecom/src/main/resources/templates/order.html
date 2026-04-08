@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Orders</title>
+    <style>
+        .orders-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: #888;
+            font-size: 18px;
+        }
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .orders-table th, .orders-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .orders-table th {
+            background: #444;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div th:replace="~{header :: Header}"></div>
+    <h2>Your Orders</h2>
+
+    <!-- Empty orders message -->
+    <div th:if="${#lists.isEmpty(Orders)}" class="orders-empty">
+        <p>You have no orders yet.</p>
+    </div>
+
+    <!-- Orders table -->
+    <table th:unless="${#lists.isEmpty(Orders)}" class="orders-table">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Product ID</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th>Status</th>
+                <th>Order Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="order : ${Orders}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${order.productId}"></td>
+                <td th:text="${order.quantity}"></td>
+                <td>₹<span th:text="${order.totalPrice}"></span></td>
+                <td th:text="${order.status}"></td>
+                <td th:text="${order.orderDate}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div th:replace="~{footer :: Footer}"></div>
+</body>
+</html>

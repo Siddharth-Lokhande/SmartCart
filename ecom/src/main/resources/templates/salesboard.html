@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SalesBoard</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #333; padding: 8px; text-align: center; }
+        th { background-color: #444; color: white; }
+    </style>
+</head>
+<body>
+    <h2>Welcome <span th:text="${User?.name}">Name</span></h2>
+    <div th:replace="~{header :: Header}"></div>
+<form th:action="@{/addproduct}" method="post" >    
+    <table>
+    <thead>
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Category</th>
+    <th>Description</th>
+    <th>Image</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><input type="text" name="pname" placeholder="Item Name"></td>
+      <td><input type="number" name="price" step="0.01"></td>
+      <td><input type="number" name="stock"></td>
+      <td>
+      <select name="category">
+          <option value="electronics">Electronics</option>
+          <option value="clothing">Clothing</option>
+          <option value="Cosmetics">Cosmetics</option>
+          <option value="LifeStyle">LifeStyle</option>
+          <option value="furniture">furniture</option>
+        </select>
+      </td>
+      <td><textarea name="pdesc"></textarea></td>
+      <td><input type="file" name="Image"></td>
+  </tr>
+  <tr style="height: 20px;">
+      <td colspan="6"></td>
+    </tr>
+    <tr>
+      <td colspan="6" style="text-align: center;">
+        <button type="submit">Add Product</button>
+      </td>
+      </tr>     
+  <tr th:each="item : ${Product?.size() > 0 ? Product : null}">
+    <td th:text="${item.pname}">pname</td>
+    <td th:text="${item.price}">0.00</td>
+    <td th:text="${item.stock}">0</td>
+    <td th:text="${item.category}">Category</td>
+    <td th:text="${item.pdesc}">Description</td>
+    <td>
+        <img th:src="${item.imageUrl != null} ? @{${item.imageUrl}} : '/images/default.jpg'" 
+             width="50" alt="product image"/>
+    </td>
+</tr>
+  </tbody>
+</table>
+   <table>
+    <thead>
+  <tr>
+    <th>CustomerId</th>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Date of Order</th>
+    <th>Status</th>
+    <th>Total</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="item : ${Orders}">
+    <td th:text="${item?.customerId}"></td>
+    <td th:text="${item?.productName}"></td>
+    <td th:text="${item?.quantity}"></td>
+    <td th:text="${item?.orderDate}"></td>
+    <td th:text="${item?.status}"></td>
+    <td th:text="${item?.totalPrice}"></td>
+</tr>
+   </tbody>
+   </table>
+</form>
+ <div th:replace="~{footer :: Footer}"></div>
+ </body>
+</html>
